@@ -32,7 +32,7 @@ export default function Page() {
       <CustomCursor />
       <Scene3D />
 
-      <div className="fixed inset-0 z-1 bg-black/85" />
+      <div className="fixed inset-0 z-1 bg-black/80" />
 
       <div className="relative z-10">
         <SiteMenu onSelectCategory={setActiveCategory} />

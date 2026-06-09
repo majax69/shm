@@ -29,9 +29,15 @@ export const fadeUp: Variants = {
 }
 
 // Conteneur qui orchestre l'entrée échelonnée de ses enfants.
+// Il s'anime LUI-MÊME (fondu) pour que son cadre/bordure n'apparaisse jamais
+// vide avant l'arrivée du contenu — le conteneur et son contenu entrent ensemble.
 export const staggerContainer = (stagger = STAGGER, delayChildren = 0): Variants => ({
-  hidden: {},
-  show: { transition: { staggerChildren: stagger, delayChildren } },
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: DURATION, ease: EASE, staggerChildren: stagger, delayChildren },
+  },
 })
 
 // Enfant d'un conteneur staggeré.
