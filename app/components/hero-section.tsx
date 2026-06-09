@@ -1,15 +1,11 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Clock, MapPin, Star, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Star } from 'lucide-react'
 import { PLANITY_URL } from '@/lib/content'
 import { MagneticButton } from './magnetic-button'
 
 const EASE = [0.22, 1, 0.36, 1] as const
-
-
-
-
 
 export function HeroSection() {
   const { scrollYProgress } = useScroll()
@@ -87,11 +83,29 @@ export function HeroSection() {
                 Prestations
               </MagneticButton>
             </motion.div>
-          </div>
 
-          {/* Cards de réassurance, entrée en cascade + survol soigné */}
-       
-      
+            {/* Réassurance discrète : une ligne sobre sous les CTA, sans cadre. */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.95, duration: 0.8, ease: EASE }}
+              className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/70 text-legible"
+            >
+              <span className="inline-flex items-center gap-1.5">
+                <span className="flex text-rose-400" aria-hidden>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-3.5 fill-current" />
+                  ))}
+                </span>
+                <span className="text-white/85">4,8/5</span>
+                <span className="text-white/50">(50+ avis)</span>
+              </span>
+              <span className="hidden h-3 w-px bg-white/20 sm:block" />
+              <span>Villeurbanne · Lyon</span>
+              <span className="hidden h-3 w-px bg-white/20 sm:block" />
+              <span>Ouvert 7j/7</span>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
     </section>

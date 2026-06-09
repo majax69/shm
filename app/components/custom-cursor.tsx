@@ -1,11 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -29,6 +30,9 @@ export function CustomCursor() {
       window.removeEventListener('mouseover', handleMouseOver)
     }
   }, [])
+
+  // Pas de curseur custom si l'utilisateur préfère un mouvement réduit.
+  if (reduceMotion) return null
 
   return (
     <>

@@ -5,11 +5,13 @@ import { useState } from 'react'
 import { AboutSection } from './components/about-section'
 import { CtaSection } from './components/cta-section'
 import { CustomCursor } from './components/custom-cursor'
-import { FloatingParticles } from './components/floating-particles'
+import { FaqSection } from './components/faq-section'
 import { HeroSection } from './components/hero-section'
 import { InfoSection } from './components/info-section'
 import { Loader } from './components/loader'
+import { MobileBookingBar } from './components/mobile-booking-bar'
 import { ProcessSection } from './components/process-section'
+import { ResultsSection } from './components/results-section'
 import { Scene3D } from './components/scene-3d'
 import { ServicesSection } from './components/services-section'
 import { SiteFooter } from './components/site-footer'
@@ -28,7 +30,6 @@ export default function Page() {
       </AnimatePresence>
 
       <CustomCursor />
-      <FloatingParticles />
       <Scene3D />
 
       <div className="fixed inset-0 z-1 bg-black/85" />
@@ -36,14 +37,18 @@ export default function Page() {
       <div className="relative z-10">
         <SiteMenu onSelectCategory={setActiveCategory} />
         <HeroSection />
+        <StatsBand />
         <AboutSection />
         <ServicesSection activeCategory={activeCategory} onSelectCategory={setActiveCategory} />
-        <StatsBand />
+        <ResultsSection />
         <ProcessSection />
+        <FaqSection />
         <InfoSection />
         <CtaSection />
         <SiteFooter />
       </div>
+
+      <MobileBookingBar />
     </main>
   )
 }

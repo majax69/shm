@@ -5,6 +5,7 @@
   --foreground: #171717;
 }
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,5 +40,28 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Geist est chargé via next/font (variable --font-geist-sans). On l'utilise
+     comme police par défaut au lieu d'Arial qui écrasait la typo de la marque. */
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Anneau de focus visible et cohérent pour la navigation clavier (WCAG 2.4.7).
+   Rose de la marque, avec un décalage pour rester lisible sur fond sombre. */
+:focus-visible {
+  outline: 2px solid var(--color-rose-400, #fb7185);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect de la préférence système : on neutralise les animations longues
+   (parallax, curseur custom, rotation 3D, staggers) pour le confort et l'a11y. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

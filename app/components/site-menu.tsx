@@ -135,7 +135,7 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
             <button
               onClick={() => setIsOpen(true)}
               aria-label="Ouvrir le menu"
-              className="flex size-10 items-center justify-center rounded-full border border-white/15 bg-black/20hover:bg-black/10 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-rose-400/30 md:hidden"
+              className="flex size-10 items-center justify-center rounded-full border border-white/15 bg-black/20 hover:bg-black/10 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-rose-400/30 md:hidden"
             >
               <Menu className="size-5 text-white" />
             </button>
@@ -152,7 +152,7 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-[60] bg-black/20hover:bg-black/10 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm md:hidden"
             />
             <motion.div
               initial={{ x: '100%' }}
