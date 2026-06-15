@@ -118,5 +118,4 @@ There is no test suite in this project.
 - **`EADDRINUSE` on `pnpm dev`**: a dev server is already running. `pkill -f
   'next dev'` before relaunching.
 - **`curl` poll times out**: the first compile is slow; check `/tmp/shm-dev.log`.
-  The driver also tolerates Unsplash hero images being slow (they load over the
-  network).
+  The driver also leaves enough time for the local hero images to decode.

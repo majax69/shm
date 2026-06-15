@@ -35,4 +35,4 @@ Key libraries and where they're used:
 
 Styling is **Tailwind CSS v4** via the PostCSS plugin (`postcss.config.mjs`); global styles and theme live in `app/globals.css` (no `tailwind.config` file).
 
-`@/*` is aliased to the repo root (`tsconfig.json`). Remote images are restricted to `images.unsplash.com` in `next.config.ts` — add hostnames there before using `next/image` with other sources.
+`@/*` is aliased to the repo root (`tsconfig.json`). Site photography is served locally from `public/`; configure `images.remotePatterns` in `next.config.ts` before adding remote sources to `next/image`.

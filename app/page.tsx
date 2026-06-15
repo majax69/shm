@@ -9,6 +9,7 @@ import { FaqSection } from './components/faq-section'
 import { HeroSection } from './components/hero-section'
 import { InfoSection } from './components/info-section'
 import { Loader } from './components/loader'
+import { LocalSeoSection } from './components/local-seo-section'
 import { MobileBookingBar } from './components/mobile-booking-bar'
 import { ProcessSection } from './components/process-section'
 import { ResultsSection } from './components/results-section'
@@ -43,6 +44,7 @@ export default function Page() {
         <ResultsSection />
         <ProcessSection />
         <FaqSection />
+        <LocalSeoSection />
         <InfoSection />
         <CtaSection />
         <SiteFooter />

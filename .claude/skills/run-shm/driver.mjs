@@ -94,7 +94,7 @@ const main = async () => {
   await c.send('Page.enable');
   await c.send('Runtime.enable');
   await c.send('Page.navigate', { url: URL_ARG });
-  await sleep(WAIT); // clear the 3.5s loading splash + let Unsplash hero images decode
+  await sleep(WAIT); // clear the 3.5s loading splash + let the hero images decode
 
   if (CLICK) {
     const js = `(() => {

@@ -1,5 +1,6 @@
 import { Clock, Mail, MapPin, Phone } from 'lucide-react'
 import { BUSINESS, PLANITY_URL } from '@/lib/content'
+import { LOCAL_ROUTES } from '@/lib/seo'
 
 // lucide ne fournit plus d'icône de marque : SVG Instagram inline.
 function InstagramIcon({ className }: { className?: string }) {
@@ -72,6 +73,11 @@ export function SiteFooter() {
               <a href={PLANITY_URL} target="_blank" rel="noreferrer" className="block text-white/60 transition-colors hover:text-rose-400">
                 Réserver en ligne
               </a>
+              {LOCAL_ROUTES.map((route) => (
+                <a key={route.slug} href={route.slug} className="block text-white/60 transition-colors hover:text-rose-400">
+                  {route.title}
+                </a>
+              ))}
             </div>
           </div>
         </div>

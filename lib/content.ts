@@ -23,6 +23,7 @@ export const BUSINESS = {
   city: 'Villeurbanne',
   region: 'Auvergne-Rhône-Alpes',
   country: 'FR',
+  countryName: 'France',
   phoneDisplay: '04 78 00 00 00', // TODO: remplacer par le vrai numéro
   phoneHref: '+33478000000',
   email: 'contact@shm-cils.fr', // TODO: remplacer par le vrai e-mail
@@ -30,6 +31,7 @@ export const BUSINESS = {
   url: 'https://www.shm-cils.fr', // TODO: domaine de production
   // Lat/Lng approximatifs de Villeurbanne — à affiner pour le pin Maps.
   geo: { lat: 45.7693, lng: 4.8807 },
+  areasServed: ['Villeurbanne', 'Lyon 3', 'Lyon 6', 'Lyon 7', 'Bron', 'Vaulx-en-Velin'],
 } as const
 
 // URL d'intégration Google Maps (iframe). Remplacer le `q=` par l'adresse
@@ -39,11 +41,17 @@ export const GOOGLE_MAPS_EMBED =
 export const GOOGLE_MAPS_LINK =
   'https://www.google.com/maps/search/?api=1&query=68+Rue+L%C3%A9on+Blum+69100+Villeurbanne'
 
+export const SEO_IMAGES = [
+  '/cils-extension-closeup.png',
+  '/cliente-soin-cils-brune.png',
+  '/ongles-nail-art-mains.png',
+  '/ongles-french-ombre.jpg',
+] as const
+
 export const HERO_IMAGES = [
-  // 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=3840&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=3840&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?q=80&w=3840&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=3840&auto=format&fit=crop',
+  '/background1.png',
+  '/background2.png',
+  '/ongles-nail-art-mains.png',
 ]
 
 export type CategoryId = 'cils' | 'ongles' | 'sourcils' | 'epilation'
@@ -63,8 +71,7 @@ export type Category = {
   color: string
   bgColor: string
   borderColor: string
-  // Visuel d'ambiance de la catégorie. ⚠️ Placeholders Unsplash : à remplacer
-  // par de vraies photos du studio / de prestations réalisées.
+  // Visuel réel du studio ou d'une prestation réalisée.
   image: string
   tagline: string
 }
@@ -94,8 +101,7 @@ export const categories: Category[] = [
     color: 'text-rose-400',
     bgColor: 'bg-rose-400/10',
     borderColor: 'border-rose-400/15',
-    image:
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1400&auto=format&fit=crop',
+    image: '/cliente-soin-cils-brune.png',
     tagline: 'Un regard intense, naturellement vôtre.',
   },
   {
@@ -105,8 +111,7 @@ export const categories: Category[] = [
     color: 'text-rose-400',
     bgColor: 'bg-rose-400/10',
     borderColor: 'border-rose-400/15',
-    image:
-      'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1400&auto=format&fit=crop',
+    image: '/ongles-nail-art-mains.png',
     tagline: 'Des mains soignées, jusqu’au moindre détail.',
   },
   {
@@ -116,8 +121,7 @@ export const categories: Category[] = [
     color: 'text-rose-400',
     bgColor: 'bg-rose-400/10',
     borderColor: 'border-rose-400/15',
-    image:
-      'https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?q=80&w=1400&auto=format&fit=crop',
+    image: '/cils-extension-closeup.png',
     tagline: 'La ligne qui structure et révèle le visage.',
   },
   {
@@ -127,8 +131,7 @@ export const categories: Category[] = [
     color: 'text-rose-400',
     bgColor: 'bg-rose-400/10',
     borderColor: 'border-rose-400/15',
-    image:
-      'https://images.unsplash.com/photo-1457972729786-0411a3b2b626?q=80&w=1400&auto=format&fit=crop',
+    image: '/client-epilation.png',
     tagline: 'Une peau nette, un soin tout en douceur.',
   },
 ]
@@ -221,24 +224,19 @@ export type BeforeAfter = {
   alt: string
 }
 
-// Résultats avant/après. ⚠️ Images Unsplash de démonstration : à remplacer par
-// de vraies photos clientes (avec accord) pour une preuve authentique.
+// Résultats réalisés au studio avec les photos fournies par l'établissement.
 export const beforeAfter: BeforeAfter[] = [
   {
     label: 'Extension de cils',
-    before:
-      'https://images.unsplash.com/photo-1583001931096-959e9a1a6223?q=80&w=1200&auto=format&fit=crop',
-    after:
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop',
+    before: '/cils-avant.png',
+    after: '/cils-apres.png',
     alt: 'Regard avant et après une pose d’extensions de cils',
   },
   {
-    label: 'Rehaussement de cils',
-    before:
-      'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1200&auto=format&fit=crop',
-    after:
-      'https://images.unsplash.com/photo-1457972729786-0411a3b2b626?q=80&w=1200&auto=format&fit=crop',
-    alt: 'Cils avant et après un rehaussement',
+    label: 'Pose gel French',
+    before: '/ongles-avant.png',
+    after: '/ongles-apres.png',
+    alt: 'Ongles avant et après une pose gel French',
   },
 ]
 
