@@ -14,21 +14,31 @@ function BeforeAfterSlider({ before, after, label, alt }: BeforeAfter) {
   const [position, setPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const updateFromClientX = (clientX: number) => {
+  const updateFromPointer = (clientX: number, clientY: number) => {
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
+    // On ignore tout pointeur en dehors de la zone de l'image.
+    if (
+      clientX < rect.left ||
+      clientX > rect.right ||
+      clientY < rect.top ||
+      clientY > rect.bottom
+    ) {
+      return
+    }
     const pct = ((clientX - rect.left) / rect.width) * 100
     setPosition(Math.min(100, Math.max(0, pct)))
   }
 
   const handlePointerDown = (e: React.PointerEvent) => {
+    e.preventDefault()
     e.currentTarget.setPointerCapture(e.pointerId)
-    updateFromClientX(e.clientX)
+    updateFromPointer(e.clientX, e.clientY)
   }
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (e.buttons !== 1) return
-    updateFromClientX(e.clientX)
+    updateFromPointer(e.clientX, e.clientY)
   }
 
   return (
@@ -44,6 +54,7 @@ function BeforeAfterSlider({ before, after, label, alt }: BeforeAfter) {
           src={after}
           alt={alt}
           fill
+          draggable={false}
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
         />
@@ -60,6 +71,7 @@ function BeforeAfterSlider({ before, after, label, alt }: BeforeAfter) {
             src={before}
             alt=""
             fill
+            draggable={false}
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
           />
