@@ -16,7 +16,7 @@ function InstagramIcon({ className }: { className?: string }) {
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/5 bg-black/30 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12">
+      <div className="mx-auto max-w-7xl px-6 py-16 pb-28 md:px-12 md:pb-16">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
             <h3 className="mb-4 text-lg font-semibold text-white">SHM Cils & Ongles</h3>
