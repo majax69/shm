@@ -8,13 +8,12 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useEffect } from 'react'
+import { EASE } from '@/lib/motion'
 
 const BRAND = 'cils by shm'
 const SUBTITLE = 'studio du regard'
 const LOCATION = 'Villeurbanne · Lyon'
 const DURATION = 1.9
-
-const EASE = [0.22, 1, 0.36, 1] as const
 
 type LoaderProps = {
   onComplete: () => void
@@ -73,8 +72,9 @@ export function Loader({ onComplete }: LoaderProps) {
           {LOCATION}
         </motion.p>
 
-        <h1
+        <p
           aria-label={BRAND}
+          role="img"
           className="mt-6 font-playfair text-5xl font-medium leading-none tracking-[-0.03em] text-white sm:text-6xl"
         >
           <motion.span
@@ -92,7 +92,7 @@ export function Loader({ onComplete }: LoaderProps) {
               className="absolute bottom-[0.08em] right-0 top-1/2 w-px -translate-y-1/2 bg-rose-100/90"
             />
           </motion.span>
-        </h1>
+        </p>
 
         <motion.p
           initial={{ opacity: 0, y: 8 }}

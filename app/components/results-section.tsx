@@ -35,7 +35,9 @@ function BeforeAfterSlider({ before, after, label, alt }: BeforeAfter) {
     <div className="group">
       <div
         ref={containerRef}
-        className="relative aspect-square w-full overflow-hidden rounded-2xl  select-none"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        className="relative aspect-square w-full cursor-ew-resize touch-none select-none overflow-hidden rounded-2xl"
       >
         {/* APRÈS (fond) */}
         <Image
@@ -68,10 +70,8 @@ function BeforeAfterSlider({ before, after, label, alt }: BeforeAfter) {
 
         {/* Poignée + ligne */}
         <div
-          className="absolute inset-y-0 z-10 w-0.5 -translate-x-1/2 bg-white/90"
+          className="pointer-events-none absolute inset-y-0 z-10 w-0.5 -translate-x-1/2 bg-white/90"
           style={{ left: `${position}%` }}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
         >
           <span className="absolute top-1/2 left-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-black shadow-lg">
             <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">

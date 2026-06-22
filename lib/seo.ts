@@ -1,4 +1,4 @@
-import { BUSINESS, categories, PLANITY_URL, SEO_IMAGES, services } from '@/lib/content'
+import { BUSINESS, categories, PLANITY_URL, reviews, SEO_IMAGES, services } from '@/lib/content'
 
 export const SITE_KEYWORDS = [
   'extension de cils Villeurbanne',
@@ -118,6 +118,17 @@ export const businessJsonLd = {
         bestRating: '5',
         reviewCount: '50',
       },
+      review: reviews.map((review) => ({
+        '@type': 'Review',
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: String(review.rating),
+          bestRating: '5',
+        },
+        author: { '@type': 'Person', name: 'Cliente vérifiée' },
+        reviewBody: review.text,
+        datePublished: review.date,
+      })),
       potentialAction: {
         '@type': 'ReserveAction',
         target: {

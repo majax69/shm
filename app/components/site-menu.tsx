@@ -4,8 +4,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 import { ArrowRight, Home, MapPin, Menu, Sparkles, X, type LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 import { categories, PLANITY_URL, type CategoryId } from '@/lib/content'
-
-const EASE = [0.22, 1, 0.36, 1] as const
+import { EASE } from '@/lib/motion'
 
 // Liens du header (desktop). Toutes les ancres existent dans la page.
 const NAV_LINKS = [
@@ -36,10 +35,21 @@ const drawerItems: NavItem[] = [
   { label: 'Contact', href: '#contact', icon: MapPin, color: 'text-rose-400' },
 ]
 
-export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: CategoryId) => void }) {
+type SiteMenuProps = {
+  onSelectCategory?: (category: CategoryId) => void
+  navigationMode?: 'scroll' | 'home'
+}
+
+export function SiteMenu({ onSelectCategory, navigationMode = 'scroll' }: SiteMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
+  const isHomeNavigation = navigationMode === 'home'
+
+  const getHref = (href: string) => {
+    if (!isHomeNavigation) return href
+    return href === '#' ? '/' : `/${href}`
+  }
 
   useMotionValueEvent(scrollY, 'change', (value) => {
     const next = value > 24
@@ -56,8 +66,13 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
   }
 
   const handleDrawerClick = (item: NavItem) => (e: React.MouseEvent) => {
+    if (isHomeNavigation) {
+      setIsOpen(false)
+      return
+    }
+
     e.preventDefault()
-    if (item.category) onSelectCategory(item.category)
+    if (item.category) onSelectCategory?.(item.category)
     goTo(item.href)
   }
 
@@ -66,7 +81,7 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
       <motion.header
         initial={{ y: -28, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, delay: 2.8, ease: EASE }}
+        transition={{ duration: 0.9, ease: EASE }}
         className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
           scrolled
             ? ' bg-black/20 backdrop-blur-xl border-white/5'
@@ -76,8 +91,9 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
           {/* Marque */}
           <a
-            href="#"
+            href={getHref('#')}
             onClick={(e) => {
+              if (isHomeNavigation) return
               e.preventDefault()
               goTo('#')
             }}
@@ -101,8 +117,9 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={getHref(link.href)}
                 onClick={(e) => {
+                  if (isHomeNavigation) return
                   e.preventDefault()
                   goTo(link.href)
                 }}
@@ -133,6 +150,7 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
               <ArrowRight className="size-4" />
             </a>
             <button
+              type="button"
               onClick={() => setIsOpen(true)}
               aria-label="Ouvrir le menu"
               className="flex size-10 items-center justify-center rounded-full border border-white/15 bg-black/20 hover:bg-black/10 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-rose-400/30 md:hidden"
@@ -170,6 +188,7 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
                     <span className="font-playfair text-base font-semibold text-white">SHM</span>
                   </div>
                   <motion.button
+                    type="button"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsOpen(false)}
@@ -186,7 +205,7 @@ export function SiteMenu({ onSelectCategory }: { onSelectCategory: (category: Ca
                     return (
                       <motion.a
                         key={item.label}
-                        href={item.href}
+                        href={getHref(item.href)}
                         initial={{ x: 24, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: index * 0.05, ease: EASE }}

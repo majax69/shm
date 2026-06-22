@@ -24,8 +24,8 @@ export const BUSINESS = {
   region: 'Auvergne-Rhône-Alpes',
   country: 'FR',
   countryName: 'France',
-  phoneDisplay: '04 78 00 00 00', // TODO: remplacer par le vrai numéro
-  phoneHref: '+33478000000',
+  phoneDisplay: '06 24 04 31 93',
+  phoneHref: '+33624043193',
   email: 'contact@shm-cils.fr', // TODO: remplacer par le vrai e-mail
   instagram: 'https://www.instagram.com/', // TODO: lien Instagram réel
   url: 'https://www.shm-cils.fr', // TODO: domaine de production
@@ -319,5 +319,5 @@ export const stats: Stat[] = [
   { value: '4.8', label: 'Note moyenne' },
   { value: '50+', label: 'Avis clients' },
   { value: '7j/7', label: 'Ouvert tous les jours' },
-  { value: '5★', label: 'Volume russe & wispi' },
+  { value: '5★', label: 'Volume russe & wispy' },
 ]

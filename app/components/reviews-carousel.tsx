@@ -85,8 +85,9 @@ export function ReviewsCarousel({
               <motion.div
                 key={review.date}
                 custom={direction}
+                initial={{ opacity: 0, x: direction > 0 ? 80 : -80 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+                exit={{ opacity: 0, x: direction > 0 ? -80 : 80 }}
                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className={`${cardsPerView === 1 ? 'w-full' : ''} ${cardsPerView === 2 ? 'w-[calc(50%-12px)]' : ''} ${cardsPerView === 3 ? 'w-[calc(33.333%-16px)]' : ''} shrink-0`}
               >
@@ -100,6 +101,7 @@ export function ReviewsCarousel({
       {maxIndex > 0 && (
         <>
           <motion.button
+            type="button"
             whileTap={{ scale: 0.9 }}
             onClick={goToPrev}
             className="absolute -left-3 top-[42%] z-10 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/80 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-rose-400/40 hover:bg-black/70 hover:text-white md:-left-5"
@@ -109,6 +111,7 @@ export function ReviewsCarousel({
           </motion.button>
 
           <motion.button
+            type="button"
             whileTap={{ scale: 0.9 }}
             onClick={goToNext}
             className="absolute -right-3 top-[42%] z-10 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/50 text-white/80 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-rose-400/40 hover:bg-black/70 hover:text-white md:-right-5"
@@ -124,9 +127,10 @@ export function ReviewsCarousel({
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
             <button
               key={`dot-${idx}`}
+              type="button"
               onClick={() => goToSlide(idx)}
               aria-label={`Aller au groupe d'avis ${idx + 1}`}
-              aria-current={idx === currentIndex}
+              aria-current={idx === currentIndex ? true : undefined}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 idx === currentIndex ? 'w-7 bg-rose-400' : 'w-1.5 bg-white/25 hover:bg-white/40'
               }`}

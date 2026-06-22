@@ -15,6 +15,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       images: SEO_IMAGES.map(url),
     },
+    {
+      url: url('/mentions-legales'),
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: url('/confidentialite'),
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
     ...LOCAL_ROUTES.map((route) => ({
       url: url(route.slug),
       lastModified,

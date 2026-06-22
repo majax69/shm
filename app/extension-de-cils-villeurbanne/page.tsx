@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { BUSINESS } from '@/lib/content'
+import { BUSINESS, SEO_IMAGES } from '@/lib/content'
 import { LOCAL_ROUTES } from '@/lib/seo'
 import { LocalLandingPage } from '../components/local-landing-page'
 
 const route = LOCAL_ROUTES[0]
+const pageUrl = new URL(route.slug, BUSINESS.url).toString()
 
 export const metadata: Metadata = {
   title: route.title,
@@ -12,7 +13,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${route.title} | SHM Cils & Ongles`,
     description: route.description,
-    url: new URL(route.slug, BUSINESS.url).toString(),
+    url: pageUrl,
+    images: SEO_IMAGES.map((image) => ({
+      url: new URL(image, BUSINESS.url).toString(),
+      width: 1200,
+      height: 1600,
+      alt: 'Extensions de cils à Villeurbanne — SHM Cils & Ongles',
+    })),
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${route.title} | SHM Cils & Ongles`,
+    description: route.description,
+    images: [new URL(SEO_IMAGES[0], BUSINESS.url).toString()],
   },
 }
 

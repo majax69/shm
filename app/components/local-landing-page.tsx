@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { ArrowRight, Check, MapPin } from 'lucide-react'
 import { BUSINESS, PLANITY_URL, services } from '@/lib/content'
 import type { LOCAL_ROUTES } from '@/lib/seo'
+import { SiteFooter } from './site-footer'
+import { SiteMenu } from './site-menu'
 
 type LocalRoute = (typeof LOCAL_ROUTES)[number]
 
@@ -11,7 +13,9 @@ export function LocalLandingPage({ route }: { route: LocalRoute }) {
     : services.filter((service) => service.category === 'cils' || service.category === 'sourcils')
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <>
+    <SiteMenu navigationMode="home" />
+    <main id="main-content" className="min-h-screen bg-black text-white pt-20">
       <section className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 py-28 md:px-12">
         <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.32em] text-rose-300">
           <MapPin className="size-4" />
@@ -75,5 +79,7 @@ export function LocalLandingPage({ route }: { route: LocalRoute }) {
         </div>
       </section>
     </main>
+    <SiteFooter />
+    </>
   )
 }

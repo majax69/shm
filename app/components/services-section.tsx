@@ -74,8 +74,11 @@ export function ServicesSection({ activeCategory, onSelectCategory }: ServicesSe
               return (
                 <button
                   key={category.id}
+                  type="button"
                   role="tab"
+                  id={`tab-${category.id}`}
                   aria-selected={isActive}
+                  aria-controls={`panel-${category.id}`}
                   onClick={() => onSelectCategory(category.id)}
                   className={`relative min-h-11 shrink-0 whitespace-nowrap pb-3 text-sm font-medium transition-colors cursor-pointer md:text-base ${
                     isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
@@ -94,7 +97,13 @@ export function ServicesSection({ activeCategory, onSelectCategory }: ServicesSe
             })}
           </div>
 
-          <ul aria-live="polite" className="divide-y divide-white/10">
+          <ul
+            role="tabpanel"
+            id={`panel-${activeCategory}`}
+            aria-labelledby={`tab-${activeCategory}`}
+            aria-live="polite"
+            className="divide-y divide-white/10"
+          >
             {list.map((service, index) => (
               <motion.li
                 key={service.name}

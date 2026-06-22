@@ -1,16 +1,11 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
+import { Geist, Playfair_Display } from 'next/font/google'
 import { BUSINESS, faqs, SEO_IMAGES } from '@/lib/content'
 import { businessJsonLd, SITE_KEYWORDS } from '@/lib/seo'
 import './globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
   subsets: ['latin'],
 })
 
@@ -52,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Extension de cils Villeurbanne & Lyon | SHM',
+    title: 'Extension de cils Villeurbanne & Lyon | SHM Cils & Ongles',
     description:
       'Institut beauté à Villeurbanne près de Lyon — cils, ongles, sourcils. Réservation en ligne 7j/7.',
     images: [SEO_IMAGES[0]],
@@ -94,9 +89,15 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black"
+        >
+          Aller au contenu
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

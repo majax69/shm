@@ -3,9 +3,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Star } from 'lucide-react'
 import { PLANITY_URL } from '@/lib/content'
+import { EASE } from '@/lib/motion'
 import { MagneticButton } from './magnetic-button'
-
-const EASE = [0.22, 1, 0.36, 1] as const
 
 export function HeroSection() {
   const { scrollYProgress } = useScroll()
