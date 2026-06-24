@@ -1,4 +1,4 @@
-import { BUSINESS, categories, PLANITY_URL, reviews, SEO_IMAGES, services } from '@/lib/content'
+import { BUSINESS, categories, PLANITY_URL, SEO_IMAGES, services } from '@/lib/content'
 
 export const SITE_KEYWORDS = [
   'extension de cils Villeurbanne',
@@ -47,6 +47,8 @@ export const LOCAL_ROUTES = [
   },
 ] as const
 
+export type LocalRoute = (typeof LOCAL_ROUTES)[number]
+
 const absoluteUrl = (path: string) => new URL(path, BUSINESS.url).toString()
 
 export const businessJsonLd = {
@@ -69,11 +71,6 @@ export const businessJsonLd = {
         addressLocality: BUSINESS.city,
         addressRegion: BUSINESS.region,
         addressCountry: BUSINESS.country,
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: BUSINESS.geo.lat,
-        longitude: BUSINESS.geo.lng,
       },
       areaServed: BUSINESS.areasServed.map((area) => ({
         '@type': 'City',
@@ -112,23 +109,6 @@ export const businessJsonLd = {
           areaServed: [...BUSINESS.areasServed],
         },
       })),
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.8',
-        bestRating: '5',
-        reviewCount: '50',
-      },
-      review: reviews.map((review) => ({
-        '@type': 'Review',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: String(review.rating),
-          bestRating: '5',
-        },
-        author: { '@type': 'Person', name: 'Cliente vérifiée' },
-        reviewBody: review.text,
-        datePublished: review.date,
-      })),
       potentialAction: {
         '@type': 'ReserveAction',
         target: {
@@ -155,3 +135,40 @@ export const businessJsonLd = {
     },
   ],
 } as const
+
+export function localPageJsonLd(route: LocalRoute) {
+  const pageUrl = absoluteUrl(route.slug)
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: `${route.title} | ${BUSINESS.name}`,
+        description: route.description,
+        inLanguage: 'fr-FR',
+        isPartOf: { '@id': `${BUSINESS.url}/#website` },
+        about: { '@id': `${BUSINESS.url}/#business` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Accueil',
+            item: BUSINESS.url,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: route.title,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
+  }
+}

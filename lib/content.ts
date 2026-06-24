@@ -26,9 +26,9 @@ export const BUSINESS = {
   countryName: 'France',
   phoneDisplay: '06 24 04 31 93',
   phoneHref: '+33624043193',
-  email: 'contact@shm-cils.fr', // TODO: remplacer par le vrai e-mail
-  instagram: 'https://www.instagram.com/', // TODO: lien Instagram réel
-  url: 'https://www.shm-cils.fr', // TODO: domaine de production
+  email: 'ahamianesiham@gmail.com',
+  instagram: 'https://www.instagram.com/cilslyon_shm/',
+  url: 'https://beautyshm.fr',
   // Lat/Lng approximatifs de Villeurbanne — à affiner pour le pin Maps.
   geo: { lat: 45.7693, lng: 4.8807 },
   areasServed: ['Villeurbanne', 'Lyon 3', 'Lyon 6', 'Lyon 7', 'Bron', 'Vaulx-en-Velin'],

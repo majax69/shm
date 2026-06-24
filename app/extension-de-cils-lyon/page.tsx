@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { BUSINESS, SEO_IMAGES } from '@/lib/content'
-import { LOCAL_ROUTES } from '@/lib/seo'
+import { localPageJsonLd, LOCAL_ROUTES } from '@/lib/seo'
 import { LocalLandingPage } from '../components/local-landing-page'
 
 const route = LOCAL_ROUTES[1]
@@ -30,5 +30,10 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <LocalLandingPage route={route} />
+  return (
+    <>
+      <LocalLandingPage route={route} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localPageJsonLd(route)) }} />
+    </>
+  )
 }

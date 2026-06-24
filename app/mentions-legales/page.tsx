@@ -9,23 +9,21 @@ const sections: LegalSection[] = [
     title: 'Entreprise',
     icon: Building2,
     rows: [
-      ['Dénomination', 'Abdelmajid AHAMIANE'],
+      ['Nom commercial', 'SHM Cils & Ongles'],
       ['Forme juridique', 'Entrepreneur individuel'],
-      ['Nom commercial', 'Rifanor Software'],
-      ['SIREN', '106313455'],
-      ['Code APE', '62.01Z'],
-      ['Date d’immatriculation au RNE', '16/06/2026'],
-      ['Département de l’entreprise', '69 - Rhône'],
+      ['SIREN', '937788834'],
+      ['Code APE', '96.02B'],
+      ['Date de création', '01/12/2024'],
     ],
   },
   {
     eyebrow: 'Établissement',
-    title: 'Adresse principale',
+    title: 'Établissement accueillant la clientèle',
     icon: IdCard,
     rows: [
-      ['SIRET', '10631345500011'],
-      ['Adresse', '8 RUE Général Charles Delestraint, 69120 Vaulx-en-Velin, France'],
-      ['Code APE', '6201Z'],
+      ['SIRET', '93778883400011'],
+      ['Adresse', '68 Rue Léon Blum, 69100 Villeurbanne, France'],
+      ['Activité principale', 'Soins de beauté'],
     ],
   },
   {
@@ -35,7 +33,7 @@ const sections: LegalSection[] = [
     rows: [
       ['Site concerné', BUSINESS.name],
       ['Créateur du site', 'Rifanor Software'],
-      ['Responsable de publication', 'Rifanor Software'],
+      ['Responsable de publication', 'Siham, exploitante de SHM Cils & Ongles'],
     ],
   },
   {
