@@ -24,8 +24,8 @@ export const BUSINESS = {
   region: 'Auvergne-Rhône-Alpes',
   country: 'FR',
   countryName: 'France',
-  phoneDisplay: '06 24 04 31 93',
-  phoneHref: '+33624043193',
+  phoneDisplay: '06 24 04 81 93',
+  phoneHref: '+33624048193',
   email: 'ahamianesiham@gmail.com',
   instagram: 'https://www.instagram.com/cilslyon_shm/',
   url: 'https://beautyshm.fr',
@@ -208,7 +208,7 @@ export const faqs: FaqItem[] = [
   {
     question: 'Que faire avant ma séance ?',
     answer:
-      'Venez les yeux démaquillés, sans mascara ni crème grasse autour des yeux. Évitez le café juste avant pour limiter les micro-mouvements pendant la pose.',
+      'Venez les yeux démaquillés, sans mascara ni crème grasse autour des yeux.',
   },
   {
     question: 'Puis-je annuler ou décaler mon rendez-vous ?',
@@ -275,7 +275,7 @@ export const features: Feature[] = [
   {
     title: 'Un moment pour vous',
     description:
-      'Un cocon feutré où l’on prend le temps : café, lumière douce et soin du détail à chaque rendez-vous.',
+      'Un cocon feutré où l’on prend le temps : lumière douce et soin du détail à chaque rendez-vous.',
     icon: Heart,
   },
 ]
